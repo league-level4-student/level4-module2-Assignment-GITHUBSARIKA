@@ -94,39 +94,58 @@ public class StringMethods {
 
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
-		for (int i = 0; i < s.length(); i++) {
-			int amountOfTimes=0;
-			if(s.contains(substring)) {
-				amountOfTimes++;
-			}else {
-				return 0;
-			}
+		int amountOfTimes=0;
+		while(s.contains(substring)) {
+			amountOfTimes++;
+			int ind=s.indexOf(substring);
+			s=s.substring(ind+ substring.length(), s.length());
+			
 		}
-		return 0;
+		return amountOfTimes;
 		
 	}
 
 	// Call Utitilities.encrypt to encrypt String s
 	public static String encrypt(String s, char key) {
-		return null;
+		return Utilities.encrypt(s.getBytes(), (byte)key);
+		
 	}
 
-	// Call Utilities.decrypt to decrypt the cyphertext
+	// Call Utilities.decrypt to decrypt the cypherttex
 	public static String decrypt(String s, char key) {
-		return null;
+		
+		return Utilities.decrypt(s, (byte)key) ;
 	}
 
 	// Return the number of words in String s that end with String substring
 	// You can assume there are no punctuation marks between words
 	public static int wordsEndsWithSubstring(String s, String substring) {
-		return 0;
+		int total=0;
+		String [] words=s.split(" ");
+		for (int i = 0; i < words.length; i++) {
+			if(words[i].endsWith(substring)) {
+				total++;
+			}
+		}
+		return total;
+		//while(s.endsWith(substring)) {
+		//total++;
+		
+		//}
+		//return total;
 	}
 
 	// Given String s, return the number of characters between the first occurrence
 	// of String substring and the final occurrence
 	// You can assume that substring will appear at least twice
 	public static int distance(String s, String substring) {
+		String[] characters=s.split(substring);
+		for (int j = 0; j < characters.length; j++) {
+			int x=characters[j+1].length()-characters[j].length();
+		
+		}
 		return 0;
+		
 	}
 
 	// Return true if String s is a palindrome
