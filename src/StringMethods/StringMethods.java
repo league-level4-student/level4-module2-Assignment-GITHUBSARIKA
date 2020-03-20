@@ -139,12 +139,23 @@ public class StringMethods {
 	// of String substring and the final occurrence
 	// You can assume that substring will appear at least twice
 	public static int distance(String s, String substring) {
-		String[] characters=s.split(substring);
-		for (int j = 0; j < characters.length; j++) {
-			int x=characters[j+1].length()-characters[j].length();
-		
+		int startLocation = 0;
+		int endLocation=0;
+		for (int j = 0; j < s.length(); j++) {
+			if(s.substring(j, j + substring.length()).equals(substring)) {
+				startLocation = j + substring.length();
+				break;
+			}
 		}
-		return 0;
+		for (int i = s.length()-substring.length(); i >= 0; i--) {
+			if(s.substring(i, i+substring.length()).equals(substring)) {
+				endLocation=i;
+				break;
+			}
+		}
+		System.out.println(startLocation);
+		System.out.println(endLocation);
+		return endLocation-startLocation;
 		
 	}
 
@@ -152,7 +163,28 @@ public class StringMethods {
 	// palindromes are words or phrases are read the same forward as backward.
 	// HINT: ignore/remove all punctuation and spaces in the String
 	public static boolean palindrome(String s) {
-		return true;
+		s=s.trim();
+		
+		String y="";
+		String x="";
+		for (int i = 0; i < s.length(); i++) {
+			if(Character.isLetter(s.charAt(i))) {
+				x+=s.charAt(i);
+			}
+		}
+		for (int i = s.length()-1; i >=0; i--) {
+			if(Character.isLetter(s.charAt(i))) {
+				y+=s.charAt(i);
+				
+			}
+			
+		}
+		y = y.toLowerCase();
+		x = x.toLowerCase();
+		if(y.equals(x)) {
+			return true;
+		}
+		return false;
 	}
 
 }
